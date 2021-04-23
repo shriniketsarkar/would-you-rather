@@ -1,22 +1,50 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { removeLoggedInUser } from '../actions/loggedInUser'
 
-const Navigation = () => {
+const Navigation = (props) => {
+  const history = useHistory();
+
+  const handleLogOut = () => {
+    props.dispatch(removeLoggedInUser())
+    // history.push('/')
+  }
+
   return (
     <nav className='navigation-layout'>
       <ul>
         <li>
-          <NavLink to='/' exact className='nav-link'>Home</NavLink>
+          <NavLink to='/' exact>Home</NavLink>
         </li>
         <li>
-          <NavLink to='/new-question' className='nav-link'>New Question</NavLink>
+          <NavLink to='/new-question'>New Question</NavLink>
         </li>
         <li>
-          <NavLink to='/leader-board' className='nav-link'>Leader Board</NavLink>
+          <NavLink to='/leader-board'>Leader Board</NavLink>
+        </li>
+        <li className='login-items'>
+          <div>{props.userName}</div>
+          {
+            props.canLogOut
+              ? <NavLink
+                to='/'
+                onClick={handleLogOut}
+                className='btn-layout'>Logout</NavLink>
+              : null
+          }
         </li>
       </ul>
     </nav>
   )
 }
 
-export default Navigation
+const mapStateToProps = ({ loggedInUser, users }) => {
+  const userName = loggedInUser === null ? '' : `Hello ${users[loggedInUser].name}`
+  return {
+    canLogOut: loggedInUser != null,
+    userName
+  }
+}
+
+export default connect(mapStateToProps)(Navigation)
