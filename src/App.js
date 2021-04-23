@@ -1,32 +1,30 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, Fragment } from 'react'
 import { connect } from 'react-redux'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { handleDataForInitialLoad } from './actions/shared'
-import logo from './logo.svg';
+import Navigation from './components/Navigation'
+import Home from './components/Home'
+import NewQuestion from './components/NewQuestion'
+import LeaderBoard from './components/LeaderBoard'
 import './App.css';
 
-function App(props) {
+const App = (props) => {
 
   useEffect(() => {
     props.dispatch(handleDataForInitialLoad())
   }, [])
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Fragment>
+        <div className="App">
+          <Navigation />
+          <Route path='/' exact component={Home}/>
+          <Route path='/new-question' component={NewQuestion}/>
+          <Route path='/leader-board' component={LeaderBoard}/>
+        </div>
+      </Fragment>
+    </Router>
   );
 }
 
