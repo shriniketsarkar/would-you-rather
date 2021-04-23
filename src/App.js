@@ -1,7 +1,15 @@
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
+import { handleDataForInitialLoad } from './actions/shared'
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
+function App(props) {
+
+  useEffect(() => {
+    props.dispatch(handleDataForInitialLoad())
+  }, [])
+
   return (
     <div className="App">
       <header className="App-header">
@@ -22,4 +30,4 @@ function App() {
   );
 }
 
-export default App;
+export default connect()(App);
