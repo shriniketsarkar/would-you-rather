@@ -1,5 +1,6 @@
 import { getDataForInitialLoad } from '../utils/dataAPI'
-import { receiveUsers } from '../actions/users'
+import { receiveUsers } from './users'
+import { receiveQuestions } from './questions'
 
 // Initial action to handle :
 // 1. setting of a hardcoded user
@@ -8,8 +9,9 @@ import { receiveUsers } from '../actions/users'
 export const handleDataForInitialLoad = () => {
   return (dispatch) => {
     return getDataForInitialLoad()
-    .then(({ users }) => {
+    .then(({ users, questions }) => {
       dispatch(receiveUsers(users))
+      dispatch(receiveQuestions(questions))
     })
   }
 }
