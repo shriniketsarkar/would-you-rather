@@ -21,7 +21,6 @@ const Home = (props) => {
 }
 
 const mapStateToProps = ({ loggedInUser, users }) => {
-  console.log(users)
   return {
     canLogIn: loggedInUser === null,
     users
