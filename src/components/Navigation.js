@@ -1,14 +1,11 @@
 import React from 'react'
-import { NavLink, useHistory } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { removeLoggedInUser } from '../actions/loggedInUser'
 
 const Navigation = (props) => {
-  const history = useHistory();
-
   const handleLogOut = () => {
     props.dispatch(removeLoggedInUser())
-    // history.push('/')
   }
 
   return (

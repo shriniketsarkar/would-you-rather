@@ -2,6 +2,12 @@
   text-align: center;
 }
 
+.App-logo {
+  height: 20vmin;
+  pointer-events: none;
+  border-radius: 30px;
+}
+
 .navigation-layout ul {
   display: flex;
   flex-direction: row;
@@ -25,6 +31,41 @@ li {
   flex-direction: row;
   justify-content: flex-end;
   padding-left: 100px;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.login-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border: 1px solid green;
+  width: 400px;
+  border-radius: 10px;
+  background-color: whitesmoke;
+}
+
+.login-options {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  height: 100px;
+}
+
+.login-options select {
+  padding: 10px;
+  margin: 5px;
+}
+
+.login-options button {
+  padding: 10px;
+  margin: 5px;
 }
 
 .btn-layout {

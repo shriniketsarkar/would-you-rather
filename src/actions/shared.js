@@ -1,8 +1,5 @@
 import { getDataForInitialLoad } from '../utils/dataAPI'
 import { receiveUsers } from '../actions/users'
-import { setLoggedInUser }  from '../actions/loggedInUser'
-
-const initialUser = 'tylermcginnis'
 
 // Initial action to handle :
 // 1. setting of a hardcoded user
@@ -13,7 +10,6 @@ export const handleDataForInitialLoad = () => {
     return getDataForInitialLoad()
     .then(({ users }) => {
       dispatch(receiveUsers(users))
-      dispatch(setLoggedInUser(initialUser))
     })
   }
 }
