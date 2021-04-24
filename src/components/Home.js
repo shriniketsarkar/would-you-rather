@@ -11,7 +11,7 @@ const Home = (props) => {
     props.dispatch(setLoggedInUser(user))
   }
   return (
-    <div>
+    <div className='home-container'>
       {
         props.canLogIn
           ? <Login
@@ -19,15 +19,15 @@ const Home = (props) => {
             handleSignIn={handleSignIn} />
           :
           <div className='tabs-layout'>
-            <Tabs>
+            <Tabs className='tab-container'>
               <TabList>
                 <Tab>Unanswered Questions</Tab>
                 <Tab>Answered Questions</Tab>
               </TabList>
-              <TabPanel>
+              <TabPanel className='tab-panel'>
                 <QuestionList answered={false} />
               </TabPanel>
-              <TabPanel>
+              <TabPanel className='tab-panel'>
                 <QuestionList answered={true} />
               </TabPanel>
             </Tabs>
