@@ -14,7 +14,7 @@ const QuestionPoll = (props) => {
   const handleSubmitPoll = () => {
     // TODO: handle submit and save to store.
     // TODO: route to results page instead of home.
-    props.history.push('/')
+    props.history.push(`/poll-result/${props.id}`)
   }
 
   return (

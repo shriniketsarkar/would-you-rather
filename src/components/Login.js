@@ -24,13 +24,13 @@ const Login = (props) => {
   return (
     <div className='login-container'>
       <div className='login-panel'>
-        <div className='login-panel-header'>
+        <div>
           <h3>Welcome to Would You Rather App!</h3>
           <p>Please sign in to continue</p>
           <hr />
         </div>
         <div>
-          <img src={logo} className='App-logo' alt='logo' />
+          <img src={logo} className='app-logo' alt='logo' />
           <div>Sign in</div>
         </div>
         <div className='login-options'>

@@ -1,14 +1,28 @@
-.App {
+.app {
+  display: flex;
+  flex-direction: column;
   text-align: center;
 }
 
-.App-logo {
+.app-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-logo {
   height: 20vmin;
   pointer-events: none;
   border-radius: 30px;
 }
 
 .avatar-img {
+  height: 5vmin;
+  pointer-events: none;
+  border-radius: 30px;
+}
+
+.your-vote-img-wrapper {
   height: 12vmin;
   pointer-events: none;
   border-radius: 30px;
@@ -120,6 +134,14 @@ li {
   border: 1px solid lightgray;
 }
 
+.result-layout {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid lightgray;
+  justify-content: center;
+  width: 500px;
+}
+
 .question-header {
   display: flex;
   align-items: center;
@@ -181,4 +203,126 @@ li {
   justify-content: center;
   align-items: center;
   padding: 10px;
+}
+
+.poll-result-container {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+}
+
+.result-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.result-container span {
+  align-self: center;
+}
+
+.option-container {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid lightsalmon;
+}
+
+/* New Question Page Styles */
+
+.new-question-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border: 2px solid lightgray;
+  width: 400px;
+}
+
+.new-question-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  border-bottom: 2px solid lightgray;
+}
+
+.new-question-body {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.new-question-body h4 {
+  margin: 10px;
+}
+
+.new-question-body label {
+  font-size: 12px;
+  margin: 10px;
+}
+
+.new-question-body form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.new-question-body form input{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 95%;
+}
+
+.new-question-body form button{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 95%;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.new-question-or {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-weight: bold;
+}
+
+.new-question-or hr {
+  width: 40%;
+}
+
+/* Progress Bar Styles */
+.progress-bar-container {
+  height: 20px;
+  width: 350px;
+  background-color: lightgoldenrodyellow;
+  border-radius: 50px;
+  border: 1px solid darkblue;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: greenyellow;
+  border-radius: inherit;
+  text-align: right;
+}
+
+.progress-bar-label {
+  padding: 5px;
+  color: black;
 }
