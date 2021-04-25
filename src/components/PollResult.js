@@ -1,18 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import emptyAvatar from '../empty-avatar.png'
 import ProgressBar from './ProgressBar'
-import yourVote from '../your-vote.png'
+import yourVote from '../assets/your-vote.png'
 
 const PollResult = (props) => {
-
+  const noOfOptionOneVotes = props.question.optionOne.votes.length
+  const noOfOptionTwoVotes = props.question.optionTwo.votes.length
+  const optionOnePer = Math.floor((noOfOptionOneVotes / props.userCount) * 100)
+  const optionTwoPer = Math.floor((noOfOptionTwoVotes / props.userCount) * 100)
   const yourVoteIndicator = (option) => {
     const display = (
       <div className='your-vote-img-wrapper'>
         <img
           src={yourVote}
           className='avatar-img'
-          alt='Author avatar' />
+          alt='You voted option' />
       </div>)
     let shouldDisplay = false
     if (option === 'optionOne') {
@@ -30,7 +32,7 @@ return (
     <div className='question-body'>
       <div className='img-wrapper'>
         <img
-          src={emptyAvatar}
+          src={props.avatarURL}
           className='avatar-img'
           alt='Author avatar' />
       </div>
@@ -41,16 +43,16 @@ return (
           <div className='option-container'>
             <div className='result-container'>
               <label>Would you rather {props.question.optionOne.text} ?</label>
-              <ProgressBar completeStatus={50} />
-              <span>1 out of 2 votes</span>
+              <ProgressBar completeStatus={optionOnePer} />
+              <span>{`${noOfOptionOneVotes} out of ${props.userCount} votes`}</span>
             </div>
             {yourVoteIndicator('optionOne')}
           </div>
           <div className='option-container'>
             <div className='result-container'>
               <label>Would you rather {props.question.optionTwo.text} ?</label>
-              <ProgressBar completeStatus={50} />
-              <span>1 out of 2 votes</span>
+              <ProgressBar completeStatus={optionTwoPer} />
+              <span>{`${noOfOptionTwoVotes} out of ${props.userCount} votes`}</span>
             </div>
             {yourVoteIndicator('optionTwo')}
           </div>
@@ -67,10 +69,11 @@ const mapStateToProps = ({ loggedInUser, users, questions }, props) => {
   const user = users[question.author]
 
   return {
+    userCount: Object.keys(users).length,
     id,
     loggedInUser,
     username: user.name,
-    avatarURL: user.avatarURL,
+    avatarURL: user.avatarURL.length ? user.avatarURL : './empty-avatar.png',
     question
   }
 }

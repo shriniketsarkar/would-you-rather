@@ -1,6 +1,6 @@
-import { getDataForInitialLoad, saveQuestionAnswer } from '../utils/dataAPI'
-import { receiveUsers, updateUserAnswer } from './users'
-import { receiveQuestions, updateQuestionAnswer } from './questions'
+import { getDataForInitialLoad, saveQuestionAnswer, saveQuestion } from '../utils/dataAPI'
+import { receiveUsers, updateUserAnswer, addUserQuestion } from './users'
+import { receiveQuestions, updateQuestionAnswer, addQuestion } from './questions'
 
 export const handleDataForInitialLoad = () => {
   return (dispatch) => {
@@ -9,6 +9,16 @@ export const handleDataForInitialLoad = () => {
       dispatch(receiveUsers(users))
       dispatch(receiveQuestions(questions))
     })
+  }
+}
+
+export const handleAddQuestion = (question) => {
+  return (dispatch) => {
+    return saveQuestion(question)
+      .then((question) => {
+        dispatch(addQuestion(question))
+        dispatch(addUserQuestion(question))
+      })
   }
 }
 

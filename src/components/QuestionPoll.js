@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import emptyAvatar from '../empty-avatar.png'
 import { withRouter } from 'react-router-dom'
 import { handlePollAnswerUpdate } from '../actions/shared'
 
@@ -33,7 +32,7 @@ const QuestionPoll = (props) => {
       <div className='question-body'>
         <div className='img-wrapper'>
           <img
-            src={emptyAvatar}
+            src={props.avatarURL}
             className='avatar-img'
             alt='Author avatar' />
         </div>
@@ -78,7 +77,7 @@ const mapStateToProps = ({ loggedInUser, users, questions }, props) => {
     loggedInUser,
     id,
     username: user.name,
-    avatarURL: user.avatarURL,
+    avatarURL: user.avatarURL.length ? user.avatarURL : './empty-avatar.png',
     question
   }
 }

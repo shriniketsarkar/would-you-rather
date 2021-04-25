@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import emptyAvatar from '../empty-avatar.png'
 import { withRouter } from 'react-router-dom'
 
 const Question = (props) => {
@@ -20,7 +19,7 @@ const Question = (props) => {
       <div className='question-body'>
         <div className='img-wrapper'>
           <img
-            src={emptyAvatar}
+            src={props.avatarURL}
             className='avatar-img'
             alt='Author avatar' />
         </div>
@@ -42,7 +41,7 @@ const mapStateToProps = ({ users, questions }, { id }) => {
   return {
     id,
     username: user.name,
-    avatarURL: user.avatarURL,
+    avatarURL: user.avatarURL.length ? user.avatarURL : './empty-avatar.png',
     question
   }
 }
