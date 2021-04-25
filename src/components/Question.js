@@ -8,7 +8,7 @@ const Question = (props) => {
     if (props.answered) {
       props.history.push(`/poll-result/${props.id}`)
     } else {
-      props.history.push(`/question-poll/${props.id}`)
+      props.history.push(`/questions/${props.id}`)
     }
   }
 

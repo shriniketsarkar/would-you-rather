@@ -8,17 +8,23 @@ const Navigation = (props) => {
     props.dispatch(removeLoggedInUser())
   }
 
+  const handleMenuOnClick = (e) => {
+    const { canLogOut } = props
+    if (!canLogOut) {
+      e.preventDefault()
+    }
+  }
   return (
     <nav className='navigation-layout'>
       <ul>
         <li>
-          <NavLink to='/' exact>Home</NavLink>
+          <NavLink to='/' onClick={handleMenuOnClick} exact>Home</NavLink>
         </li>
         <li>
-          <NavLink to='/new-question'>New Question</NavLink>
+          <NavLink to='/add' onClick={handleMenuOnClick}>New Question</NavLink>
         </li>
         <li>
-          <NavLink to='/leader-board'>Leader Board</NavLink>
+          <NavLink to='/leaderboard' onClick={handleMenuOnClick}>Leader Board</NavLink>
         </li>
         <li className='login-items'>
           <div>{props.userName}</div>

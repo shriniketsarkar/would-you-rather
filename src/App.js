@@ -23,9 +23,9 @@ const App = (props) => {
           <Navigation />
           <div className='app-body'>
             <Route path='/' exact component={Home} />
-            <Route path='/new-question' component={NewQuestion} />
-            <Route path='/leader-board' component={LeaderBoard} />
-            <Route path='/question-poll/:id' component={QuestionPoll} />
+            <Route path='/add' component={NewQuestion} />
+            <Route path='/leaderboard' component={LeaderBoard} />
+            <Route path='/questions/:id' component={QuestionPoll} />
             <Route path='/poll-result/:id' component={PollResult} />
           </div>
         </div>
