@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { removeLoggedInUser } from '../actions/loggedInUser'
 
 const Navigation = (props) => {
+
   const handleLogOut = () => {
     props.dispatch(removeLoggedInUser())
   }
@@ -14,17 +15,18 @@ const Navigation = (props) => {
       e.preventDefault()
     }
   }
+
   return (
     <nav className='navigation-layout'>
       <ul>
         <li>
-          <NavLink to='/' onClick={handleMenuOnClick} exact>Home</NavLink>
+          <NavLink activeClassName='active' to='/' onClick={handleMenuOnClick} exact>Home</NavLink>
         </li>
         <li>
-          <NavLink to='/add' onClick={handleMenuOnClick}>New Question</NavLink>
+          <NavLink activeClassName='active' to='/add' onClick={handleMenuOnClick}>New Question</NavLink>
         </li>
         <li>
-          <NavLink to='/leaderboard' onClick={handleMenuOnClick}>Leader Board</NavLink>
+          <NavLink activeClassName='active' to='/leaderboard' onClick={handleMenuOnClick}>Leader Board</NavLink>
         </li>
         <li className='login-items'>
           <div>{props.userName}</div>
