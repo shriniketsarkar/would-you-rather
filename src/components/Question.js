@@ -5,7 +5,11 @@ import { withRouter } from 'react-router-dom'
 
 const Question = (props) => {
   const handleViewPoll = () => {
-    props.history.push(`/question-poll/${props.id}`)
+    if (props.answered) {
+      props.history.push(`/poll-result/${props.id}`)
+    } else {
+      props.history.push(`/question-poll/${props.id}`)
+    }
   }
 
   return (

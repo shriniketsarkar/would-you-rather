@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import emptyAvatar from '../empty-avatar.png'
 import { withRouter } from 'react-router-dom'
+import { handlePollAnswerUpdate } from '../actions/shared'
 
 const QuestionPoll = (props) => {
 
@@ -11,9 +12,16 @@ const QuestionPoll = (props) => {
     setSelectedOption(e.target.value)
   }
 
-  const handleSubmitPoll = () => {
-    // TODO: handle submit and save to store.
-    // TODO: route to results page instead of home.
+  const handleQuestionAnswerSubmit = (e) => {
+    e.preventDefault()
+    const { dispatch } = props
+    const questionAnswer = {
+      authedUser: props.loggedInUser,
+      qid: props.id,
+      answer: selectedOption
+    }
+
+    dispatch(handlePollAnswerUpdate(questionAnswer))
     props.history.push(`/poll-result/${props.id}`)
   }
 
@@ -32,7 +40,7 @@ const QuestionPoll = (props) => {
         <div className='verticle-rule'></div>
         <div className='question-options'>
           <h4>Would you rather:</h4>
-          <form className='question-poll-form' onSubmit={handleSubmitPoll}>
+          <form className='question-poll-form' onSubmit={handleQuestionAnswerSubmit}>
             <label>
               <input
                 type='radio'
@@ -61,12 +69,13 @@ const QuestionPoll = (props) => {
   )
 }
 
-const mapStateToProps = ({ users, questions }, props) => {
+const mapStateToProps = ({ loggedInUser, users, questions }, props) => {
   const { id } = props.match.params
   const question = questions[id]
   const user = users[question.author]
 
   return {
+    loggedInUser,
     id,
     username: user.name,
     avatarURL: user.avatarURL,

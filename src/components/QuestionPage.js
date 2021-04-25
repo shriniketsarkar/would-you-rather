@@ -17,11 +17,13 @@ const QuestionPage = (props) => {
         .concat(ansKeys.filter(ques => !questionKeys.includes(ques)))
     }
 
+    filteredKeys.sort((a,b) => questions[b].timestamp - questions[a].timestamp)
+
     return (
       <ul>
         {filteredKeys.map((id) => (
           <li key={id}>
-            <Question id={id} />
+            <Question id={id} answered={answered}/>
           </li>
         ))}
       </ul>
