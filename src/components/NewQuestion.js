@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import { handleAddQuestion } from '../actions/questions'
 
 const NewQuestion = (props) => {
   const history = useHistory()
@@ -13,8 +14,16 @@ const NewQuestion = (props) => {
     }
   })
 
-  const handleNewQuestionSubmit = () => {
-    // TODO: Handle storing this in the Data store.
+  const handleNewQuestionSubmit = (e) => {
+    e.preventDefault()
+    const { dispatch } = props
+    const question = {
+      author: props.loggedInUser,
+      optionOneText: optionOne,
+      optionTwoText: optionTwo
+    }
+
+    dispatch(handleAddQuestion(question))
     history.push('/')
   }
 
@@ -63,6 +72,7 @@ const NewQuestion = (props) => {
 
 const mapStateToProps = ({ loggedInUser }) => {
   return {
+    loggedInUser,
     canAccessPage: loggedInUser !== null
   }
 }

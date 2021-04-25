@@ -1,4 +1,4 @@
-import { _getQuestions, _getUsers } from './_DATA.js'
+import { _getQuestions, _getUsers, _saveQuestion } from './_DATA.js'
 
 export function getDataForInitialLoad () {
   return Promise.all([
@@ -8,4 +8,8 @@ export function getDataForInitialLoad () {
     users,
     questions
   }))
+}
+
+export function saveQuestion (question) {
+  return _saveQuestion(question)
 }
