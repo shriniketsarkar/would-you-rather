@@ -4,8 +4,13 @@ import { withRouter } from 'react-router-dom'
 import { handlePollAnswerUpdate } from '../actions/shared'
 
 const QuestionPoll = (props) => {
-
+  const { isError, history } = props
   const [selectedOption, setSelectedOption] = useState('optionOne')
+
+  if (isError) {
+    history.push('/404')
+    return null
+  }
 
   const handleOptionChange = e => {
     setSelectedOption(e.target.value)
@@ -71,6 +76,12 @@ const QuestionPoll = (props) => {
 }
 
 const mapStateToProps = ({ loggedInUser, users, questions }, props) => {
+  if (!Object.keys(questions).length) {
+    // This indicates that the user stumbled upon this url somehow and the store is not loaded
+    return {
+      isError: true
+    }
+  }
   const { id } = props.match.params
   const question = questions[id]
   const user = users[question.author]

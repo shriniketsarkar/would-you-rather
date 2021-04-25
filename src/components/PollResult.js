@@ -1,9 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import ProgressBar from './ProgressBar'
 import yourVote from '../assets/your-vote.png'
 
 const PollResult = (props) => {
+  const { isError, history } = props
+  if (isError) {
+    history.push('/404')
+    return null
+  }
   const noOfOptionOneVotes = props.question.optionOne.votes.length
   const noOfOptionTwoVotes = props.question.optionTwo.votes.length
   const optionOnePer = Math.floor((noOfOptionOneVotes / props.userCount) * 100)
@@ -64,6 +70,12 @@ return (
 }
 
 const mapStateToProps = ({ loggedInUser, users, questions }, props) => {
+  if (!Object.keys(questions).length) {
+    // This indicates that the user stumbled upon this url somehow and the store is not loaded
+    return {
+      isError: true
+    }
+  }
   const { id } = props.match.params
   const question = questions[id]
   const user = users[question.author]
@@ -78,4 +90,4 @@ const mapStateToProps = ({ loggedInUser, users, questions }, props) => {
   }
 }
 
-export default connect(mapStateToProps)(PollResult)
+export default withRouter(connect(mapStateToProps)(PollResult))
