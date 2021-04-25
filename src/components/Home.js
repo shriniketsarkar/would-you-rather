@@ -2,14 +2,16 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { setLoggedInUser } from '../actions/loggedInUser'
 import Login from './Login'
-import QuestionList from './QuestionList'
+import QuestionPage from './QuestionPage'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import 'react-tabs/style/react-tabs.css'
 
 const Home = (props) => {
+
   const handleSignIn = (user) => {
     props.dispatch(setLoggedInUser(user))
   }
+
   return (
     <div className='home-container'>
       {
@@ -25,10 +27,10 @@ const Home = (props) => {
                 <Tab>Answered Questions</Tab>
               </TabList>
               <TabPanel className='tab-panel'>
-                <QuestionList answered={false} />
+                <QuestionPage answered={false} />
               </TabPanel>
               <TabPanel className='tab-panel'>
-                <QuestionList answered={true} />
+                <QuestionPage answered={true} />
               </TabPanel>
             </Tabs>
           </div>

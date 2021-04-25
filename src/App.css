@@ -159,6 +159,18 @@ li {
   padding: 5px;
 }
 
+.question-poll-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: flex-start;
+  margin-left: 5px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-right: 5px;
+  padding: 5px;
+}
+
 .question-options button {
   padding: 5px;
   width: 100%;

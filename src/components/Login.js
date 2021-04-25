@@ -7,12 +7,13 @@ const Login = (props) => {
   const [selectedOption, setSelectedOption] = useState(userKeys[0])
 
   useEffect(() => {
-    if (userKeys.length !== 0) {
+    if (userKeys.length !== 0 && !selectedOption) {
       setSelectedOption(userKeys[0])
     }
-  }, [userKeys])
+  }, [userKeys, selectedOption])
 
   const handleUserChange = (e) => {
+    e.preventDefault()
     setSelectedOption(e.target.value)
   }
 
