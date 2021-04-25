@@ -17,30 +17,34 @@ const Navigation = (props) => {
   }
 
   return (
-    <nav className='navigation-layout'>
-      <ul>
-        <li>
-          <NavLink activeClassName='active' to='/' onClick={handleMenuOnClick} exact>Home</NavLink>
-        </li>
-        <li>
-          <NavLink activeClassName='active' to='/add' onClick={handleMenuOnClick}>New Question</NavLink>
-        </li>
-        <li>
-          <NavLink activeClassName='active' to='/leaderboard' onClick={handleMenuOnClick}>Leader Board</NavLink>
-        </li>
-        <li className='login-items'>
-          <div>{props.userName}</div>
-          {
-            props.canLogOut
-              ? <NavLink
-                to='/'
-                onClick={handleLogOut}
-                className='btn-layout'>Logout</NavLink>
-              : null
-          }
-        </li>
-      </ul>
-    </nav>
+    <div>
+      <title>Would You Rather</title>
+      <h4>Would You Rather</h4>
+      <nav className='navigation-layout'>
+        <ul>
+          <li>
+            <NavLink activeClassName='active' to='/' onClick={handleMenuOnClick} exact>Home</NavLink>
+          </li>
+          <li>
+            <NavLink activeClassName='active' to='/add' onClick={handleMenuOnClick}>New Question</NavLink>
+          </li>
+          <li>
+            <NavLink activeClassName='active' to='/leaderboard' onClick={handleMenuOnClick}>Leader Board</NavLink>
+          </li>
+          <li className='login-items'>
+            <div>{props.userName}</div>
+            {
+              props.canLogOut
+                ? <NavLink
+                  to='/'
+                  onClick={handleLogOut}
+                  className='btn-layout'>Logout</NavLink>
+                : null
+            }
+          </li>
+        </ul>
+      </nav>
+    </div>
   )
 }
 

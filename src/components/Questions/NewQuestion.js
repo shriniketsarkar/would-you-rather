@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { handleAddQuestion } from '../actions/shared'
+import { handleAddQuestion } from '../../actions/shared'
 
 const NewQuestion = (props) => {
   const history = useHistory()

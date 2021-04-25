@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { setLoggedInUser } from '../actions/loggedInUser'
 import Login from './Login'
-import QuestionPage from './QuestionPage'
+import QuestionPage from './Questions/QuestionPage'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import 'react-tabs/style/react-tabs.css'
 

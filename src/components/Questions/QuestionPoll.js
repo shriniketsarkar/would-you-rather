@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { handlePollAnswerUpdate } from '../actions/shared'
+import { handlePollAnswerUpdate } from '../../actions/shared'
 
 const QuestionPoll = (props) => {
   const { isError, history } = props

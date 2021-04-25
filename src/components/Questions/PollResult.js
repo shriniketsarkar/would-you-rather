@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import ProgressBar from './ProgressBar'
-import yourVote from '../assets/your-vote.png'
+import ProgressBar from '../ProgressBar'
+import yourVote from '../../assets/your-vote.png'
 
 const PollResult = (props) => {
   const { isError, history } = props
