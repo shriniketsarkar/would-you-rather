@@ -7,6 +7,7 @@ const LeaderBoard = (props) => {
   const history = useHistory()
   const { users, sortedKeys } = props
 
+  // If user is logged out then redirect to Home page.
   useEffect(() => {
     if (!props.canAccessPage) {
       history.push('/')
@@ -25,6 +26,7 @@ const LeaderBoard = (props) => {
                 ansCount={Object.keys(users[key].answers).length}
                 quesCount={users[key].questions.length}
                 score={value}
+                avatarURL={users[key].avatarURL}
               />
             </li>)
         })}

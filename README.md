@@ -1,70 +1,83 @@
-# Getting Started with Create React App
+# Would You Rather
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Would You Rather is a website which allows the user to login, create questions, answer question and check out a leaderboard. The Leaderboard gives a view of all the other users who are answering the same questions. You can respond to other user's questions by selecting one of the two options provided in the question poll.
 
-## Available Scripts
+The questions are displayed to the user on their Home page sorted by timestamp of when the question was created. The user can see the list of questions they have answered and the ones which they are yet to respond to. There is a Results page for every question poll which indicates the votes and percentages of the responses.
 
-In the project directory, you can run:
+## Installation and Launch Instructions
+To get started developing right away:
 
-### `npm start`
+* Install all project dependencies with `npm install`
+* Start the development server with `npm start`
+* Visit `localhost:3000` on web-browser of your choice.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Project Structure for better understanding
+```bash
+├── README.md - This file.
+├── SEARCH_TERMS.md # The whitelisted short collection of available search terms for you to use with your app.
+├── package.json # npm package manager file used to build and run the application.
+├── public
+│   ├── empty-avatar.png # This avatar is used when the user does not have an avatarURL
+|   |── john-doe.png # These are other avatars being used with the existing users.
+|   |── sara.png
+|   |── tyler.png
+│   └── index.html
+└── src
+    ├── actions # These are redux actions that the site uses to manage state
+    │   ├── Files : loggedInUser, questions, users, shared.
+    ├── assets # Static assets such as logos used in the app.
+    │   ├── Files : logo.png and your-vote.png
+    ├── components # React components used in the site.
+    │   ├── These handle Home, Leaderboard, Login, Navigation, NewQuestion, Question Results, User Score, etc
+    ├── middlewares # Middlewares used in the site with React-Redux
+    │   ├── logger # Middleware to handle console logging of Redux actions.
+    ├── reducers # These are redux reducers that the site uses to manage state
+    │   ├── Files : loggedInUser, questions, users.
+    ├── utils # This folder includes all the DATA api needed for the site
+    │   ├── _DATA.js : Initial design provided by Udacity to use as a database.
+    │   ├── dataAPI.js : APIs wrapped around the DATA to consume it efficiently.
+    ├── App.css # Styles for the Would You Rather app.
+    ├── App.js # This is the root of the Would You Rather app.
+    ├── App.test.js # Used for testing. But not implemented yet.
+    ├── index.css # Global styles.
+    └── index.js # Main render point for our application. Wraps the app with our Redux store provider for easier usage withing the application.
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Backend Server
 
-### `npm test`
+The provided file [`dataAPI.js`](src/utils/dataAPI.js) contains the methods for performing necessary operations on the backend:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* [`getDataForInitialLoad`](#getDataForInitialLoad)
+* [`saveQuestion`](#saveQuestion)
+* [`saveQuestionAnswer`](#saveQuestionAnswer)
 
-### `npm run build`
+### `getDataForInitialLoad`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Method Signature:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```js
+getDataForInitialLoad()
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* Returns a Promise which resolves to a JSON object containing a collection of users and questions for the site.
 
-### `npm run eject`
+### `saveQuestion`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Method Signature:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```js
+saveQuestion(question)
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+* question: `<Object>` containing necessary data to store the question in our store.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### `saveQuestionAnswer`
 
-## Learn More
+Method Signature:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```js
+saveQuestionAnswer(answer)
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* answer: `<Object>` container necessary data to store as an answer for a question in the store.
+* This operation handles storing the answer for the respective user and updating the question in the questions store.

@@ -8,6 +8,7 @@ import NewQuestion from './components/NewQuestion'
 import LeaderBoard from './components/LeaderBoard'
 import QuestionPoll from './components/QuestionPoll'
 import PollResult from './components/PollResult'
+import NotFoundPage from './components/NotFoundPage'
 import './App.css';
 
 const App = (props) => {
@@ -27,6 +28,7 @@ const App = (props) => {
             <Route path='/leaderboard' component={LeaderBoard} />
             <Route path='/questions/:id' component={QuestionPoll} />
             <Route path='/poll-result/:id' component={PollResult} />
+            <Route path='/404' component={NotFoundPage} />
           </div>
         </div>
       </Fragment>

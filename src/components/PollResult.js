@@ -29,7 +29,7 @@ return (
     <div className='question-header'>
       <h5>Asked by {props.username}</h5>
     </div>
-    <div className='question-body'>
+    <div className='question-body-poll-result'>
       <div className='img-wrapper'>
         <img
           src={props.avatarURL}

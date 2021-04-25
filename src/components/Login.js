@@ -6,6 +6,7 @@ const Login = (props) => {
   const userKeys = Object.keys(availableUsers)
   const [selectedOption, setSelectedOption] = useState(userKeys[0])
 
+  // Setup initial selected option for drop box.
   useEffect(() => {
     if (userKeys.length !== 0 && !selectedOption) {
       setSelectedOption(userKeys[0])
@@ -45,7 +46,11 @@ const Login = (props) => {
               })
             }
           </select>
-          <button disabled={userKeys.length === 0} onClick={handleBtnClick}>Sign In</button>
+          <button
+            disabled={userKeys.length === 0}
+            onClick={handleBtnClick}>
+            Sign In
+          </button>
         </div>
       </div>
     </div>

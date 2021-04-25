@@ -2,6 +2,7 @@ import { getDataForInitialLoad, saveQuestionAnswer, saveQuestion } from '../util
 import { receiveUsers, updateUserAnswer, addUserQuestion } from './users'
 import { receiveQuestions, updateQuestionAnswer, addQuestion } from './questions'
 
+// Get data for Users andd Questions from DATA Store
 export const handleDataForInitialLoad = () => {
   return (dispatch) => {
     return getDataForInitialLoad()
@@ -12,6 +13,7 @@ export const handleDataForInitialLoad = () => {
   }
 }
 
+// Add new Question data to Users andd Questions
 export const handleAddQuestion = (question) => {
   return (dispatch) => {
     return saveQuestion(question)
@@ -22,6 +24,7 @@ export const handleAddQuestion = (question) => {
   }
 }
 
+// Add question's answer data to Users and Questions
 export const handlePollAnswerUpdate = (answer) => {
   return (dispatch) => {
     return saveQuestionAnswer(answer)

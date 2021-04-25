@@ -1,5 +1,4 @@
 import React from 'react'
-import { connect } from 'react-redux'
 
 const UserScore = (props) => {
 
@@ -7,7 +6,7 @@ const UserScore = (props) => {
     <div className='user-score-container'>
       <div className='img-wrapper'>
         <img
-          src={props.avatarURL}
+          src={props.avatarURL.length ? props.avatarURL : './empty-avatar.png'}
           className='avatar-img'
           alt='Author avatar' />
       </div>
@@ -37,11 +36,4 @@ const UserScore = (props) => {
   )
 }
 
-const mapStateToProps = ({ loggedInUser, users }) => {
-  return {
-    canAccessPage: loggedInUser !== null,
-    avatarURL: users[loggedInUser].avatarURL.length ? users[loggedInUser].avatarURL : './empty-avatar.png'
-  }
-}
-
-export default connect(mapStateToProps)(UserScore)
+export default UserScore

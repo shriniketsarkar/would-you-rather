@@ -25,43 +25,45 @@ const QuestionPoll = (props) => {
   }
 
   return (
-    <div className='question-layout'>
-      <div className='question-header'>
-        <h5>{props.username} asks:</h5>
-      </div>
-      <div className='question-body'>
-        <div className='img-wrapper'>
-          <img
-            src={props.avatarURL}
-            className='avatar-img'
-            alt='Author avatar' />
+    <div className='question-body'>
+      <div className='question-layout'>
+        <div className='question-header'>
+          <h5>{props.username} asks:</h5>
         </div>
-        <div className='verticle-rule'></div>
-        <div className='question-options'>
-          <h4>Would you rather:</h4>
-          <form className='question-poll-form' onSubmit={handleQuestionAnswerSubmit}>
-            <label>
-              <input
-                type='radio'
-                name='optionOne'
-                value='optionOne'
-                checked={selectedOption === 'optionOne'}
-                onChange={handleOptionChange}
-              />
-              {props.question.optionOne.text}
-            </label>
-            <label>
-              <input
-                type='radio'
-                name='optionTwo'
-                value='optionTwo'
-                checked={selectedOption === 'optionTwo'}
-                onChange={handleOptionChange}
-              />
-              {props.question.optionTwo.text}
-            </label>
-            <button type='submit'>Submit</button>
-          </form>
+        <div className='question-body'>
+          <div className='img-wrapper'>
+            <img
+              src={props.avatarURL}
+              className='avatar-img'
+              alt='Author avatar' />
+          </div>
+          <div className='verticle-rule'></div>
+          <div className='question-options'>
+            <h4>Would you rather:</h4>
+            <form className='question-poll-form' onSubmit={handleQuestionAnswerSubmit}>
+              <label>
+                <input
+                  type='radio'
+                  name='optionOne'
+                  value='optionOne'
+                  checked={selectedOption === 'optionOne'}
+                  onChange={handleOptionChange}
+                />
+                {props.question.optionOne.text}
+              </label>
+              <label>
+                <input
+                  type='radio'
+                  name='optionTwo'
+                  value='optionTwo'
+                  checked={selectedOption === 'optionTwo'}
+                  onChange={handleOptionChange}
+                />
+                {props.question.optionTwo.text}
+              </label>
+              <button type='submit'>Submit</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>

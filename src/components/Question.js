@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 const Question = (props) => {
+
+  // This routes to the correct page based on if the question is already answered. 
   const handleViewPoll = () => {
     if (props.answered) {
       props.history.push(`/poll-result/${props.id}`)

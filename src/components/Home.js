@@ -7,7 +7,6 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import 'react-tabs/style/react-tabs.css'
 
 const Home = (props) => {
-
   const handleSignIn = (user) => {
     props.dispatch(setLoggedInUser(user))
   }
