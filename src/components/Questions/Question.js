@@ -3,32 +3,29 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 const Question = (props) => {
+  const { history, id, username, avatarURL, question} = props
 
-  // This routes to the correct page based on if the question is already answered. 
+  // This routes to the correct page based on if the question is already answered.
   const handleViewPoll = () => {
-    if (props.answered) {
-      props.history.push(`/poll-result/${props.id}`)
-    } else {
-      props.history.push(`/questions/${props.id}`)
-    }
+      history.push(`/questions/${id}`)
   }
 
   return (
     <div className='question-layout'>
       <div className='question-header'>
-        <h5>{props.username} asks:</h5>
+        <h5>{username} asks:</h5>
       </div>
       <div className='question-body'>
         <div className='img-wrapper'>
           <img
-            src={props.avatarURL}
+            src={avatarURL}
             className='avatar-img'
             alt='Author avatar' />
         </div>
         <div className='verticle-rule'></div>
         <div className='question-options'>
           <h4>Would you rather:</h4>
-          <p>{props.question.optionOne.text} OR {props.question.optionTwo.text}</p>
+          <p>{question.optionOne.text} OR {question.optionTwo.text}</p>
           <button onClick={handleViewPoll}>View Poll</button>
         </div>
       </div>
