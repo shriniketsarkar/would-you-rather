@@ -7,8 +7,9 @@ import { Provider } from 'react-redux';
 import reportWebVitals from './reportWebVitals';
 import reducer from './reducers';
 import middlewares from './middlewares';
+import { composeWithDevTools } from 'redux-devtools-extension'
 
-const store = createStore(reducer, middlewares)
+const store = createStore(reducer, composeWithDevTools(middlewares))
 
 ReactDOM.render(
   <Provider store={store}>

@@ -4,6 +4,9 @@ Would You Rather is a website which allows the user to login, create questions, 
 
 The questions are displayed to the user on their Home page sorted by timestamp of when the question was created. The user can see the list of questions they have answered and the ones which they are yet to respond to. There is a Results page for every question poll which indicates the votes and percentages of the responses.
 
+## Authors
+[Shriniket Sarkar](https://github.com/shriniketsarkar)
+
 ## Installation and Launch Instructions
 To get started developing right away:
 

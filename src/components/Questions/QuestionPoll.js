@@ -5,7 +5,7 @@ import { handlePollAnswerUpdate } from '../../actions/shared'
 import PollResult from './PollResult'
 
 const QuestionPoll = (props) => {
-  const { isError, isAnswered, dispatch, history, loggedInUser, id } = props
+  const { isError, canViewPage, isAnswered, dispatch, history, loggedInUser, id } = props
   const { voteTotalCount, username, avatarURL, question } = props
   const [selectedOption, setSelectedOption] = useState('optionOne')
 
@@ -32,8 +32,8 @@ const QuestionPoll = (props) => {
           ?
           <Redirect
             to={{
-              pathname: '/login',
-              state: { referrer: '/404' }
+              pathname: canViewPage ? '/404' : '/login',
+              state: { referrer: canViewPage ? '/404' : `/questions/${id}` }
             }}
           />
           :
@@ -98,14 +98,33 @@ const QuestionPoll = (props) => {
 }
 
 const mapStateToProps = ({ loggedInUser, users, questions }, props) => {
-  if (!Object.keys(questions).length) {
-    // This indicates that the user stumbled upon this url somehow and the store is not loaded
+  console.log('canViewPage:', loggedInUser !== null)
+  const { id } = props.match.params
+  // If the user is not logged in then we want them to login and return to this page.
+  if (!loggedInUser) {
     return {
+      id,
+      canViewPage: false,
       isError: true
     }
   }
-  const { id } = props.match.params
   const question = questions[id]
+  if (!question && loggedInUser) {
+    // This indicates that the user stumbled upon this url somehow and the store is not loaded or id is invalid.
+    return {
+      canViewPage: true,
+      isError: true
+    }
+  }
+
+  // if (!loggedInUser || !question) {
+  //   return {
+  //     isError: true,
+  //     canViewPage: loggedInUser !== null
+  //   }
+  // }
+
+
   const user = users[question.author]
   const isAnswered = question.optionOne.votes.includes(loggedInUser) ||
     question.optionTwo.votes.includes(loggedInUser)

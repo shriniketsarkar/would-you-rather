@@ -24,6 +24,7 @@ const Login = (props) => {
 
   const handleBtnClick = () => {
     dispatch(setLoggedInUser(selectedOption))
+    console.log('Referrer:', props.location?.state?.referrer);
     if (props.location?.state?.referrer) {
       history.push(props.location.state.referrer)
     } else {
