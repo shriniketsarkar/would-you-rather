@@ -1,16 +1,11 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 import { handlePollAnswerUpdate } from '../../actions/shared'
 
 const QuestionPoll = (props) => {
-  const { isError, history } = props
+  const { isError, dispatch, history, loggedInUser, id } = props
   const [selectedOption, setSelectedOption] = useState('optionOne')
-
-  if (isError) {
-    history.push('/404')
-    return null
-  }
 
   const handleOptionChange = e => {
     setSelectedOption(e.target.value)
@@ -18,59 +13,71 @@ const QuestionPoll = (props) => {
 
   const handleQuestionAnswerSubmit = (e) => {
     e.preventDefault()
-    const { dispatch } = props
     const questionAnswer = {
-      authedUser: props.loggedInUser,
-      qid: props.id,
+      authedUser: loggedInUser,
+      qid: id,
       answer: selectedOption
     }
 
     dispatch(handlePollAnswerUpdate(questionAnswer))
-    props.history.push(`/poll-result/${props.id}`)
+    history.push(`/poll-result/${id}`)
   }
 
   return (
-    <div className='question-body'>
-      <div className='question-layout'>
-        <div className='question-header'>
-          <h5>{props.username} asks:</h5>
-        </div>
-        <div className='question-body'>
-          <div className='img-wrapper'>
-            <img
-              src={props.avatarURL}
-              className='avatar-img'
-              alt='Author avatar' />
+    <div>
+      {
+        isError
+          ?
+          <Redirect
+            to={{
+              pathname: '/login',
+              state: { referrer: '/404' }
+            }}
+          />
+          :
+          <div className='question-body'>
+            <div className='question-layout'>
+              <div className='question-header'>
+                <h5>{props.username} asks:</h5>
+              </div>
+              <div className='question-body'>
+                <div className='img-wrapper'>
+                  <img
+                    src={props.avatarURL}
+                    className='avatar-img'
+                    alt='Author avatar' />
+                </div>
+                <div className='verticle-rule'></div>
+                <div className='question-options'>
+                  <h4>Would you rather:</h4>
+                  <form className='question-poll-form' onSubmit={handleQuestionAnswerSubmit}>
+                    <label>
+                      <input
+                        type='radio'
+                        name='optionOne'
+                        value='optionOne'
+                        checked={selectedOption === 'optionOne'}
+                        onChange={handleOptionChange}
+                      />
+                      {props.question.optionOne.text}
+                    </label>
+                    <label>
+                      <input
+                        type='radio'
+                        name='optionTwo'
+                        value='optionTwo'
+                        checked={selectedOption === 'optionTwo'}
+                        onChange={handleOptionChange}
+                      />
+                      {props.question.optionTwo.text}
+                    </label>
+                    <button type='submit'>Submit</button>
+                  </form>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className='verticle-rule'></div>
-          <div className='question-options'>
-            <h4>Would you rather:</h4>
-            <form className='question-poll-form' onSubmit={handleQuestionAnswerSubmit}>
-              <label>
-                <input
-                  type='radio'
-                  name='optionOne'
-                  value='optionOne'
-                  checked={selectedOption === 'optionOne'}
-                  onChange={handleOptionChange}
-                />
-                {props.question.optionOne.text}
-              </label>
-              <label>
-                <input
-                  type='radio'
-                  name='optionTwo'
-                  value='optionTwo'
-                  checked={selectedOption === 'optionTwo'}
-                  onChange={handleOptionChange}
-                />
-                {props.question.optionTwo.text}
-              </label>
-              <button type='submit'>Submit</button>
-            </form>
-          </div>
-        </div>
-      </div>
+      }
     </div>
   )
 }

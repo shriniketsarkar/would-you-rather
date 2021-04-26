@@ -1,23 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { setLoggedInUser } from '../actions/loggedInUser'
 import Login from './Login'
 import QuestionPage from './Questions/QuestionPage'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import 'react-tabs/style/react-tabs.css'
 
 const Home = (props) => {
-  const handleSignIn = (user) => {
-    props.dispatch(setLoggedInUser(user))
-  }
 
   return (
     <div className='home-container'>
       {
         props.canLogIn
-          ? <Login
-            availableUsers={props.users}
-            handleSignIn={handleSignIn} />
+          ? <Login users={props.users} />
           :
           <div className='tabs-layout'>
             <Tabs className='tab-container'>

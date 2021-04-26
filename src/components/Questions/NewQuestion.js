@@ -1,18 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Redirect } from 'react-router-dom'
 import { handleAddQuestion } from '../../actions/shared'
 
 const NewQuestion = (props) => {
   const history = useHistory()
   const [optionOne, setOptionOne] = useState('')
   const [optionTwo, setOptionTwo] = useState('')
-
-  useEffect(() => {
-    if (!props.canAccessPage) {
-      history.push('/')
-    }
-  })
 
   const handleNewQuestionSubmit = (e) => {
     e.preventDefault()
@@ -37,6 +31,12 @@ const NewQuestion = (props) => {
 
   return (
     <div className='new-question-container'>
+      {!props.canAccessPage && <Redirect
+        to={{
+          pathname: '/login',
+          state: { referrer: '/add' }
+        }}
+      />}
       <div className='new-question-header'>
         <h3>Create New Question</h3>
       </div>

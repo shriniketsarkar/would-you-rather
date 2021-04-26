@@ -9,6 +9,7 @@ import LeaderBoard from './components/LeaderBoard/LeaderBoard'
 import QuestionPoll from './components/Questions/QuestionPoll'
 import PollResult from './components/Questions/PollResult'
 import NotFoundPage from './components/NotFoundPage'
+import Login from './components/Login'
 import './App.css';
 
 const App = (props) => {
@@ -24,6 +25,7 @@ const App = (props) => {
           <Navigation />
           <div className='app-body'>
             <Route path='/' exact component={Home} />
+            <Route path='/login' exact component={Login} />
             <Route path='/add' component={NewQuestion} />
             <Route path='/leaderboard' component={LeaderBoard} />
             <Route path='/questions/:id' component={QuestionPoll} />

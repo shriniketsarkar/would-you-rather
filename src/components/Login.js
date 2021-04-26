@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import { setLoggedInUser } from '../actions/loggedInUser'
 import logo from '../assets/logo.png'
 
 const Login = (props) => {
-  const { availableUsers } = props
-  const userKeys = Object.keys(availableUsers)
+  const { users, dispatch } = props
+  const history = useHistory()
+  const userKeys = Object.keys(users)
   const [selectedOption, setSelectedOption] = useState(userKeys[0])
 
   // Setup initial selected option for drop box.
@@ -19,7 +23,12 @@ const Login = (props) => {
   }
 
   const handleBtnClick = () => {
-    props.handleSignIn(selectedOption)
+    dispatch(setLoggedInUser(selectedOption))
+    if (props.location?.state?.referrer) {
+      history.push(props.location.state.referrer)
+    } else {
+      history.push('/')
+    }
   }
 
   return (
@@ -40,7 +49,7 @@ const Login = (props) => {
               userKeys.map(key => {
                 return (
                   <option key={`login-options-${key}`} value={key}>
-                    {availableUsers[key].name}
+                    {users[key].name}
                   </option>
                 )
               })
@@ -57,4 +66,10 @@ const Login = (props) => {
   )
 }
 
-export default Login
+const mapStateToProps = ({ users }) => {
+  return {
+    users
+  }
+}
+
+export default connect(mapStateToProps)(Login)

@@ -1,22 +1,19 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import UserScore from './UserScore'
 
 const LeaderBoard = (props) => {
-  const history = useHistory()
   const { users, sortedKeys } = props
-
-  // If user is logged out then redirect to Home page.
-  useEffect(() => {
-    if (!props.canAccessPage) {
-      history.push('/')
-    }
-  }, [])
-
 
   return (
     <div className='leader-board-container'>
+      {!props.canAccessPage && <Redirect
+        to={{
+          pathname: '/login',
+          state: { referrer: '/leaderboard' }
+        }}
+      />}
       <ul>
         {sortedKeys.map(({ key, value }) => {
           return (
